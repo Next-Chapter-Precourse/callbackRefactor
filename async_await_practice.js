@@ -6,15 +6,27 @@ const fs = require("fs").promises;
  */
 
 async function readFileAsync(filePath) {
-  // TODO: Use async/await to handle fs.promises.readFile
+  try {
+    const data = await fs.readFile(filePath, "utf8");
+    console.log(data);
+  } catch (error) {
+    console.error("Error reading file", error);
+  }
 }
+
+readFileAsync("file2.txt");
 
 /**
  * Refactor the Promise-based user data fetcher to use async/await.
  * @param {number} userId - The ID of the user to fetch.
  */
 async function getUserDataAsync(userId) {
-  // TODO: Use async/await to handle fetchUserDataPromise
+  try {
+    const data = await fetchUserDataPromise(userId);
+    console.log("User Data: ", data);
+  } catch (error) {
+    console.error("Error", error);
+  }
 }
 
 // Helper function refactored to return a promise
@@ -22,8 +34,8 @@ function fetchUserDataPromise(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const fakeDatabase = {
-        1: {name: "Jane Doe", age: 30},
-        2: {name: "John Doe", age: 28}
+        1: { name: "Jane Doe", age: 30 },
+        2: { name: "John Doe", age: 28 },
       };
       if (fakeDatabase[id]) {
         resolve(fakeDatabase[id]);
@@ -33,3 +45,5 @@ function fetchUserDataPromise(id) {
     }, 1000);
   });
 }
+
+getUserDataAsync(2);

@@ -6,7 +6,16 @@ const fs = require("fs").promises;
  */
 function readFilePromise(filePath) {
   // TODO: Refactor to use fs.promises.readFile and handle the promise with .then() and .catch()
+  fs.readFile(filePath, "utf8")
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error("Error reading file", err);
+    });
 }
+
+readFilePromise("file2.txt");
 
 /**
  * Refactor the callback-based user data fetcher to use Promises.
@@ -14,9 +23,16 @@ function readFilePromise(filePath) {
  */
 function getUserDataPromise(userId) {
   // TODO: Refactor fetchUserData to return a promise and use .then() and .catch() to handle it
+  fetchUserDataPromise(userId)
+    .then((data) => {
+      console.log("User Data: ", data);
+    })
+    .catch((err) => {
+      console.error("Error", err);
+    });
 }
 
-// Helper function simulate fetchinf user data
+// Helper function simulate fetching of user data
 // refactored to return a promise i.e. resolve or reject. More on resolve and reject here: https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 // Similar to the callback_practice file you will use this above in getUserDataPromise to fetch user data.
 function fetchUserDataPromise(id) {
@@ -35,3 +51,5 @@ function fetchUserDataPromise(id) {
     }, 1000);
   });
 }
+
+getUserDataPromise(1);
