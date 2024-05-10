@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const fs = require('fs').promises;
 
 /**
  * Refactor the callback-based file reader to use Promises.
@@ -6,6 +6,14 @@ const fs = require("fs").promises;
  */
 function readFilePromise(filePath) {
   // TODO: Refactor to use fs.promises.readFile and handle the promise with .then() and .catch()
+  const data = fs
+    .readFile(filePath, 'utf-8')
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      throw error;
+    });
 }
 
 /**
@@ -14,6 +22,15 @@ function readFilePromise(filePath) {
  */
 function getUserDataPromise(userId) {
   // TODO: Refactor fetchUserData to return a promise and use .then() and .catch() to handle it
+  return new Promise((resolve, reject) => {
+    fetchUserData(userId)
+      .then((userData) => {
+        resolve(userData);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 }
 
 // Helper function simulate fetchinf user data
@@ -23,14 +40,14 @@ function fetchUserDataPromise(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const fakeDatabase = {
-        1: { name: "Jane Doe", age: 30 },
-        2: { name: "John Doe", age: 28 },
+        1: { name: 'Jane Doe', age: 30 },
+        2: { name: 'John Doe', age: 28 },
       };
 
       if (fakeDatabase[id]) {
         resolve(fakeDatabase[id]);
       } else {
-        reject(new Error("User not found"));
+        reject(new Error('User not found'));
       }
     }, 1000);
   });
