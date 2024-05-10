@@ -5,7 +5,7 @@ const fs = require("fs");
 function readFilePromise(filePath) {
   return new Promise((resolve, reject) => {
     // resolve("inside read file");
-    fs.readFile(filePath, "utf8", (err, data) => {
+    fs.promises.readFile(filePath, "utf8", (err, data) => {
       if (err) {
         // If an error occurs during the file read, log the error and exit the function.
         reject("Failed to read the second file:", err);
