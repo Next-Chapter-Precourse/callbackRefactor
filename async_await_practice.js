@@ -22,8 +22,8 @@ function fetchUserDataPromise(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const fakeDatabase = {
-        1: {name: "Jane Doe", age: 30},
-        2: {name: "John Doe", age: 28}
+        1: { name: "Jane Doe", age: 30 },
+        2: { name: "John Doe", age: 28 }
       };
       if (fakeDatabase[id]) {
         resolve(fakeDatabase[id]);
