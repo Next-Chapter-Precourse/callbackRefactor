@@ -19,7 +19,7 @@ function readFileCallback(filePath) {
   });
 }
 
-// Problem 2: Process User Data with Callbacks
+// Problem 2: Process User Data with Callbacks#
 
 /**
  * Simulates fetching user data from a database.
