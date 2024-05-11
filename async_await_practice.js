@@ -1,23 +1,36 @@
 const fs = require("fs").promises;
 
 /**
- * Refactor the Promise-based file reader to use async/await.
+ * Reads a file asynchronously using async/await.
  * @param {string} filePath - Path to the file to be read.
  */
-
 async function readFileAsync(filePath) {
-  // TODO: Use async/await to handle fs.promises.readFile
+  try {
+    const data = await fs.readFile(filePath, "utf-8"); // assuming the file encoding is utf-8
+    console.log("File read successfully:", data);
+    return data;
+  } catch (error) {
+    console.error("Error reading the file:", error);
+    throw error; // Re-throw the error if needed to be handled by the caller
+  }
 }
 
 /**
- * Refactor the Promise-based user data fetcher to use async/await.
+ * Fetches user data asynchronously using async/await.
  * @param {number} userId - The ID of the user to fetch.
  */
 async function getUserDataAsync(userId) {
-  // TODO: Use async/await to handle fetchUserDataPromise
+  try {
+    const userData = await fetchUserDataPromise(userId);
+    console.log("User data fetched successfully:", userData);
+    return userData;
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    throw error; // Re-throw the error if needed to be handled by the caller
+  }
 }
 
-// Helper function refactored to return a promise
+// Helper function remains unchanged, it's already set up to return a promise.
 function fetchUserDataPromise(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

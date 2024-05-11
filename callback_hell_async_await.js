@@ -1,7 +1,21 @@
 const fs = require("fs").promises;
 
-// Refactor the code from `callback_hell_promises.js` to use Async/Await.
-// TODO: Rewrite the Promise-based operations using async and await.
+/**
+ * Executes nested file operations using async/await.
+ */
 async function nestedFileOperationsAsync() {
-  // Implement the async/await-based version of nested file operations here.
+  try {
+    // Read the original file
+    const originalContent = await fs.readFile('path/to/original/file.txt', 'utf-8');
+
+    // Process the content
+    const processedContent = originalContent.toUpperCase();  // Example transformation
+
+    // Write the processed content to a new file
+    await fs.writeFile('path/to/destination/file.txt', processedContent);
+
+    console.log("File processing completed successfully.");
+  } catch (error) {
+    console.error("An error occurred during file operations:", error);
+  }
 }
