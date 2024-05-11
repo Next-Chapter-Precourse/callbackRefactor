@@ -1,19 +1,31 @@
-const fs = require("fs").promises;
-
+const fs = require("fs/promises");
 /**
  * Refactor the callback-based file reader to use Promises.
  * @param {string} filePath - Path to the file to be read.
  */
-function readFilePromise(filePath) {
+async function readFilePromise(filePath) {
   // TODO: Refactor to use fs.promises.readFile and handle the promise with .then() and .catch()
+  console.log("inside read file function");
+  try {
+    const file = await fs.readFile(filePath, "utf8");
+    const write = await fs.writeFile("newData.txt", file);
+  } catch (err) {
+    throw new Error(err.message);
+  }
 }
-
+readFilePromise("file1.txt");
 /**
  * Refactor the callback-based user data fetcher to use Promises.
  * @param {number} userId - The ID of the user to fetch.
  */
-function getUserDataPromise(userId) {
+async function getUserDataPromise(userId) {
   // TODO: Refactor fetchUserData to return a promise and use .then() and .catch() to handle it
+  try {
+    const userData = await fetchUserDataPromise(userId);
+    console.log(userData);
+  } catch (err) {
+    throw new Error(err.message);
+  }
 }
 
 // Helper function simulate fetchinf user data

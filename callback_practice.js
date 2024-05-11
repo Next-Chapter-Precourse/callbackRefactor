@@ -30,8 +30,8 @@ function fetchUserData(id, callback) {
   setTimeout(() => {
     // Simulated database lookup.
     const fakeDatabase = {
-      1: {name: "Jane Doe", age: 30},
-      2: {name: "John Doe", age: 28}
+      1: { name: "Jane Doe", age: 30 },
+      2: { name: "John Doe", age: 28 }
     };
     // Check if user exists in the fake database.
     if (fakeDatabase[id]) {
