@@ -1,0 +1,18 @@
+
+
+  it('should throw an error for non-existing file', async () => {
+    fs.promises.readFile.mockRejectedValue(new Error('File not found'));
+    await expect(readFilePromise('test.txt')).rejects.toThrow('File not found');
+  });
+});
+
+describe('getUserDataPromise', () => {
+  it('should return user data for existing user', async () => {
+    const data = await getUserDataPromise(1);
+    expect(data).toEqual({ name: "Jane Doe", age: 30 });
+  });
+
+  it('should throw an error for non-existing user', async () => {
+    await expect(getUserDataPromise(3)).rejects.toThrow('User not found');
+  });
+});
